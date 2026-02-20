@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>umg.edu.gt</groupId>
+  <artifactId>stackHandler</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>stackHandler</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+    <groupId>umg.edu.gt</groupId>
+    <artifactId>data-structure-stack</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+  </dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>
+                            umg.edu.gt.data_structure.stackhandler.App
+                        </mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+     </plugins>
+</build>
+
+<profiles>
+    <profile>
+        <id>obfuscate</id>
+
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.wvengen</groupId>
+                    <artifactId>proguard-maven-plugin</artifactId>
+                    <version>2.6.0</version>
+
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>proguard</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+
+                    <configuration>
+                        <!-- JAR de entrada -->
+                        <injar>${project.build.finalName}.jar</injar>
+
+                        <!-- JAR de salida (ofuscado) -->
+                        <outjar>${project.build.finalName}-obfuscated.jar</outjar>
+
+                        <!-- NO optimizar ni eliminar código -->
+                        <options>
+                            <option>-dontoptimize</option>
+                            <option>-dontshrink</option>
+                            <option>-dontwarn</option>
+                            <option>-dontnote</option>
+
+                            <!-- Mantener el main -->
+                            <option>
+                                -keep public class umg.edu.gt.data_structure.stackhandler.App {
+                                    public static void main(java.lang.String[]);
+                                }
+                            </option>
+                        </options>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+</project>
