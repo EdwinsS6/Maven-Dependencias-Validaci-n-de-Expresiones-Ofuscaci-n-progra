@@ -1,5 +1,8 @@
 package umg.edu.gt.data_structure.stackhandler;
 
+import umg.edu.gt.data_structure.stack.Stack;
+
+
 public class SymbolValidator {
 
     public static boolean validate(String expression) {

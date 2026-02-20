@@ -1,4 +1,4 @@
-package umg.edu.gt.data_structure.stackhandler;
+package umg.edu.gt.data_structure.stack;
 
 public class Node {
     char value;
